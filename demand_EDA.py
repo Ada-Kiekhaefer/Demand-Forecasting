@@ -7,6 +7,7 @@ Created on Tue Jan  7 12:11:15 2020
 """
 import pandas as pd
 import matplotlib.pyplot as plt
+import statsmodels.api as sm
 
 #import training data
 filename = 'train.csv'
@@ -83,5 +84,4 @@ plt.xlabel('Stores')
 plt.ylabel('Sales')
 plt.title('Sum of all items at each stores')
 plt.show()
-
 
