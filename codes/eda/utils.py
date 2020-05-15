@@ -7,19 +7,27 @@ Created on Tue Apr 14 13:44:18 2020
 """
 import matplotlib.pyplot as plt
 
+
 plt.style.use('fivethirtyeight')
 
 def df_subset(df, store = 1, item = 1, t_start = '2013-01', t_end = '2017-12'):
-    """ A function to subset dataframe 
+    """ 
+    A function to subset dataframe 
     
+    Parameters
+    ----------
+    df : dataframe of stores sales
+    store : int, a store number
+    item : int, product item number
+    t_start : start time
+    t_end : end time
+    
+    Returns
+    -------
     Return a dataframe of specific item at a specific store and time period
     
-    :param df: dataframe of stores sales
-    :param store: a store number
-    :param item: product item number
-    :param t_start: start time
-    :param t_end: end time
-    
+    Examples
+    --------
     >>> df_subset(df, store = 1, item = 1, t_start = '2013-01', t_end = '2013-12')
     
     """
