@@ -6,7 +6,10 @@ Created on Tue Apr 14 13:44:18 2020
 @author: Ada
 """
 import matplotlib.pyplot as plt
-
+from statsmodels.tsa.arima_model import ARIMA
+import itertools
+import warnings
+warnings.filterwarnings('ignore')
 
 plt.style.use('fivethirtyeight')
 
@@ -89,6 +92,29 @@ def df_subset_monthly_mean(df_sub):
     return store_item_monthly_mean
     
 
+def find_best_pdq(train, max_p=10, max_d=2, max_q=10):
+    d = range(0, max_d + 1)
+    p = range(0, max_p + 1)
+    q = range(0, max_q + 1)
+    pdq = list(itertools.product(p,d,q))
+    min_aic = ARIMA(train, order=(0,0,0)).fit().aic
+    best_pdq = (0,0,0)
+    
+    for param in pdq:
+        try:
+            model_arima = ARIMA(train, order=param)
+            model_fit = model_arima.fit()
+            print(param, model_fit.aic)
+            if model_fit.aic < min_aic:
+                min_aic = model_fit.aic
+                best_pdq = param
+                
+        except:
+            continue
+                
+    print('best p,d,q = ', best_pdq)
+    print('minimum aic = ', min_aic)
+    
 
 
 
